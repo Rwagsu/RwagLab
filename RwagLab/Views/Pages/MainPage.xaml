@@ -1,0 +1,47 @@
+﻿<Page x:Class="RwagLab.Views.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
+      xmlns:local="using:RwagLab"
+      xmlns:utu="using:Uno.Toolkit.UI"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <!-- TitleBar -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="16,0"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical"
+                    Spacing="16">
+
+            <TextBlock VerticalAlignment="Center"
+                       Style="{ThemeResource BodyStrongTextBlockStyle}"
+                       Text="{Binding Title}" />
+        </StackPanel>
+
+        <!-- Content -->
+        <NavigationView x:Name="MainNavigationView" Grid.Row="1">
+
+
+            <!-- Events -->
+            <Interactivity:Interaction.Behaviors>
+                <!-- Navigate to Page -->
+                <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                    <Interactivity:InvokeCommandAction Command="{Binding NavigateToPageCommand}" />
+                </Interactivity:EventTriggerBehavior>
+
+                <!-- Navigate go back -->
+                <Interactivity:EventTriggerBehavior EventName="BackRequested">
+                    <Interactivity:InvokeCommandAction Command="{Binding NavigateGoBackCommand}" />
+                </Interactivity:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+
+            <!-- Content -->
+            <Frame x:Name="MainFrame" />
+        </NavigationView>
+    </Grid>
+</Page>
