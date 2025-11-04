@@ -46,6 +46,10 @@
     </UnoFeatures>
   </PropertyGroup>
   <ItemGroup>
+    <Content Remove="Assets\Icons\AppIcons\icon_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\Icons\AppIcons\icon_full.png" />
     <None Remove="Views\Pages\SettingsPage.xaml" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +58,11 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.WinUI.Behaviors" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.Segmented" />
+    <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <UnoImage Include="Assets\Icons\AppIcons\icon_full.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Pages\SettingsPage.xaml">

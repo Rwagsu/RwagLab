@@ -4,7 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
+using RwagLab.Services;
 using RwagLab.Views.Pages;
+using Uno.Extensions.Toolkit;
 using Uno.Resizetizer;
 using Windows.Graphics;
 using Windows.UI.Notifications;
@@ -16,18 +18,19 @@ public partial class App : Application {
     /// Initializes the singleton application object. This is the first line of authored code
     /// executed, and as such is the logical equivalent of main() or WinMain().
     /// </summary>
-    
-    private IOptions<AppConfig>? configuration;
 
     public App() {
         this.InitializeComponent();
     }
 
+    public IOptions<AppConfig>? Configuration { get; private set; }
+
+
     public static new App Current => (App)Application.Current;
 
     protected Window? MainWindow { get; private set; }
 
-    protected IThemeService? ThemeService { get; private set; }
+    public IThemeService? ThemeService { get; private set; }
     internal IHost? Host { get; private set; }
 
     protected override void OnLaunched(LaunchActivatedEventArgs args) {
@@ -77,6 +80,9 @@ public partial class App : Application {
                 {
                     // TODO: Register your services
                     //services.AddSingleton<IMyService, MyService>();
+                    services.AddSingleton<ConfigService>();
+                    services.AddSingleton<SettingsService>();
+                    services.AddSingleton<ScriptItemService>();
                 })
             );
         MainWindow = builder.Window;
@@ -89,16 +95,22 @@ public partial class App : Application {
         Host = builder.Build();
 
         // Configuration
-        configuration = GetService<IOptions<AppConfig>>();
+        Configuration = GetService<IOptions<AppConfig>>();
 
         // Window Settings
-        MainWindow.AppWindow.Resize(new SizeInt32 { Height = configuration.Value.WindowHeight, Width = configuration.Value.WindowWidth});
+        MainWindow.AppWindow.Resize(new SizeInt32 { Height = Configuration.Value.WindowHeight, Width = Configuration.Value.WindowWidth});
         MainWindow.AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
 
         ThemeService = MainWindow.GetThemeService();
 
+        Task.Run(async () => {
+            if (ThemeService != null) {
+                await ThemeService.SetThemeAsync(GetService<SettingsService>().AppColorTheme);
+            }
+        });
+
 #if WINAPPSDK_PACKAGED
-        // TODO: 不等了拖拽三大金刚自己写(恼)
+        // TODO: 三大金刚直接炸飞天(物理)
         MainWindow.AppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
         MainWindow.AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
         MainWindow.AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;

@@ -123,4 +123,22 @@
   <data name="MainPage_SettingsText.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsPage_Owner.Text" xml:space="preserve">
+    <value>的作品.</value>
+  </data>
+  <data name="SettingsPage_ThemeSettingsCard.Description" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPage_ThemeSettingsCard.Header" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPage_ThemeSettings_System.Content" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="SettingsPage_ThemeSettings_Light.Content" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SettingsPage_ThemeSettings_Dark.Content" xml:space="preserve">
+    <value />
+  </data>
 </root>

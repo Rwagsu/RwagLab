@@ -8,6 +8,10 @@ public record AppConfig {
 
     public string? ApplicationName { get; init; }
 
+    public string? Owner { get; init; }
+
+    public string? OwnerLink { get; init; }
+
     public int WindowHeight { get; init; }
 
     public int WindowWidth { get; init; }

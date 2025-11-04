@@ -20,8 +20,8 @@ public partial class MainPageViewModel : ObservableObject {
     public string Title { get; set; }
 
     [RelayCommand]
-    private void NavigateToPage(NavigationViewSelectionChangedEventArgs args) {
-        if (args.IsSettingsSelected) {
+    private void NavigateToPage(NavigationViewSelectionChangedEventArgs e) {
+        if (e.IsSettingsSelected) {
             WeakReferenceMessenger.Default.Send(new ValueChangedMessage<Type>(typeof(SettingsPage)), MessengerTokenEnum.MainPage_PageNavigateToken.ToString());
         }
     }

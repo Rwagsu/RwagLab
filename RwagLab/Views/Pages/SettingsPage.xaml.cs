@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,8 +10,10 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using RwagLab.ViewModels.Pages;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using static System.Net.WebRequestMethods;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,5 +25,18 @@ namespace RwagLab.Views.Pages;
 public sealed partial class SettingsPage : Page {
     public SettingsPage() {
         this.InitializeComponent();
+        DataContext = new SettingsPageViewModel();
+    }
+
+    private string GetApplicationName() {
+        return App.Current.Configuration?.Value.ApplicationName ?? string.Empty;
+    }
+
+    private string GetOwner() {
+        return App.Current.Configuration?.Value.Owner ?? string.Empty;
+    }
+
+    private Uri GetOwnerLink() {
+        return new Uri(App.Current.Configuration?.Value.OwnerLink ?? string.Empty);
     }
 }
