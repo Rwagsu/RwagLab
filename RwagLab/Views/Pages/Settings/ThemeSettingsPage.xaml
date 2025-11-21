@@ -1,0 +1,137 @@
+﻿<Page x:Class="RwagLab.Views.Pages.Settings.ThemeSettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:CommunityToolkit.WinUI.Controls"
+      xmlns:converters="using:CommunityToolkit.WinUI.Converters"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:RwagLab.Views.Pages.Settings"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      mc:Ignorable="d">
+    <Page.Resources>
+        <converters:StringVisibilityConverter x:Key="ErrorTipVisibilityConverter" />
+        <converters:EmptyStringToObjectConverter x:Key="ErrorTipColorConverter"
+                                                 EmptyValue="{ThemeResource ControlElevationBorderBrush}"
+                                                 NotEmptyValue="{ThemeResource SystemFillColorCriticalBrush}" />
+    </Page.Resources>
+
+    <ScrollViewer>
+        <StackPanel Margin="24"
+                    Orientation="Vertical"
+                    Spacing="8">
+            <!-- TODO: 神奇 ThemeService -->
+            <InfoBar Title="该设置目前无效."
+                     IsClosable="False"
+                     IsOpen="True"
+                     Message="我们还不知道 Uno Platform 在乱整什么东西 😇" />
+
+            <!-- Theme -->
+            <controls:SettingsCard x:Uid="ThemeSettingsPage_ThemeSettingsCard">
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE793;" />
+                </controls:SettingsCard.HeaderIcon>
+                <controls:Segmented x:Name="ThemeSegmented"
+                                    SelectedIndex="{Binding ThemeIndex, Mode=TwoWay}"
+                                    Style="{StaticResource ButtonSegmentedStyle}">
+                    <controls:Segmented.Items>
+                        <!-- System -->
+                        <controls:SegmentedItem x:Uid="ThemeSettingsPage_ThemeSettings_System">
+                            <controls:SegmentedItem.Icon>
+                                <FontIcon Glyph="&#xE770;" />
+                            </controls:SegmentedItem.Icon>
+                        </controls:SegmentedItem>
+
+                        <!-- Light -->
+                        <controls:SegmentedItem x:Uid="ThemeSettingsPage_ThemeSettings_Light">
+                            <controls:SegmentedItem.Icon>
+                                <FontIcon Glyph="&#xE781;" />
+                            </controls:SegmentedItem.Icon>
+                        </controls:SegmentedItem>
+
+                        <!-- Dark -->
+                        <controls:SegmentedItem x:Uid="ThemeSettingsPage_ThemeSettings_Dark">
+                            <controls:SegmentedItem.Icon>
+                                <FontIcon Glyph="&#xE793;" />
+                            </controls:SegmentedItem.Icon>
+                        </controls:SegmentedItem>
+                    </controls:Segmented.Items>
+
+                    <!-- Events -->
+                    <Interactivity:Interaction.Behaviors>
+                        <!-- Switch theme -->
+                        <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                            <Interactivity:InvokeCommandAction Command="{Binding SetThemeCommand}" />
+                        </Interactivity:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </controls:Segmented>
+            </controls:SettingsCard>
+
+            <!-- Background -->
+            <controls:SettingsExpander x:Uid="ThemeSettingsPage_BackgroundSettingsExpander">
+                <controls:SettingsExpander.HeaderIcon>
+                    <FontIcon Glyph="&#xEB9F;" />
+                </controls:SettingsExpander.HeaderIcon>
+
+                <!-- Items -->
+                <controls:SettingsExpander.Items>
+                    <controls:SettingsCard x:Uid="ThemeSettingsPage_BackgroundPathSettingsCard">
+                        <!-- Icon -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xE7C5;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <StackPanel Spacing="8">
+                            <!-- Content -->
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <!-- TODO: 貌似不是即时更改. -->
+                                <TextBox x:Uid="ThemeSettingsPage_BackgroundPathTextBox"
+                                         MinWidth="300"
+                                         MaxWidth="460"
+                                         BorderBrush="{Binding BackgroundPathErrorTip, Converter={StaticResource ErrorTipColorConverter}}"
+                                         Text="{Binding BackgroundPath, Mode=TwoWay}" />
+
+                                <!-- FilePicker button -->
+                                <Button x:Uid="ThemeSettingsPage_BackgroundPathButton"
+                                        Width="32"
+                                        Height="32"
+                                        Padding="0"
+                                        Command="{Binding SelectBackgroundCommand}">
+                                    <FontIcon FontSize="16" Glyph="&#xE8E5;" />
+                                </Button>
+                            </StackPanel>
+
+                            <!-- Error tip -->
+                            <controls:MarkdownTextBlock Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                                                        Text="{Binding BackgroundPathErrorTip}"
+                                                        UseAutoLinks="True"
+                                                        Visibility="{Binding BackgroundPathErrorTip, Converter={StaticResource ErrorTipVisibilityConverter}, ConverterParameter=False}" />
+                        </StackPanel>
+                    </controls:SettingsCard>
+                </controls:SettingsExpander.Items>
+
+                <!-- Content -->
+                <ComboBox SelectedIndex="{Binding BackgroundIndex, Mode=TwoWay}">
+                    <ComboBox.Items>
+                        <!-- None -->
+                        <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundComboBox_None" />
+
+                        <!-- Image -->
+                        <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundComboBox_Image" />
+
+                        <!-- Bing wallpaper -->
+                        <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundComboBox_BingWallpaper" />
+                    </ComboBox.Items>
+
+                    <!-- Events -->
+                    <Interactivity:Interaction.Behaviors>
+                        <!-- Switch background -->
+                        <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                            <Interactivity:InvokeCommandAction Command="{Binding SetBackgroundCommand}" />
+                        </Interactivity:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </ComboBox>
+            </controls:SettingsExpander>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

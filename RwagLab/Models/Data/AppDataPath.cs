@@ -5,7 +5,7 @@ using System.Text;
 namespace RwagLab.Models.Data;
 
 public static class AppDataPath {
-    public static readonly string dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "RwagLab");
+    public static readonly string dataPath = Path.Combine(ApplicationData.Current.LocalFolder.Path, App.Configuration.Value.ApplicationName);
 
     public static readonly string VersionConfigsPath = Path.Combine(dataPath, "LaunchConfigs");
 

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.JavaScript;
 using System.Security;
@@ -17,7 +18,9 @@ using Serilog;
 
 namespace RwagLab.Services;
 
-public class ConfigService {
+public class PathService {
+    private readonly HttpClient httpClient;
+
     private readonly bool isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
     private readonly HashSet<string> windowsPathReservedNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
     {
@@ -28,12 +31,15 @@ public class ConfigService {
 
     private readonly SemaphoreSlim fileLock = new SemaphoreSlim(1, 1);
 
+    public PathService(HttpClient _httpClient) {
+        httpClient = _httpClient;
+    }
+
 
     /// <summary>
     /// Check if the file path is valid.
     /// </summary>
     /// <param name="path">The path of the string to be checked.</param>
-    /// <param name="isCheckPathPointing">If enabled, the path is additionally checked to see if it points to a valid file.</param>
     /// <returns>Returns true if the path is valid and absolute.</returns>
     public bool CheckPath(string path) {
         try {
@@ -261,6 +267,39 @@ public class ConfigService {
             }
         }
         return false;
+    }
+
+    public async Task<bool> IsValidImageUrl(string url, int timeout = 10000) {
+        // Check empty
+        if (string.IsNullOrWhiteSpace(url)) {
+            return false;
+        }
+
+        try {
+            // Timeout
+            var cts = new CancellationTokenSource(timeout);
+
+            // Send HEAD
+            var request = new HttpRequestMessage(HttpMethod.Head, url);
+            request.Headers.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("image/*"));
+
+            HttpResponseMessage response = await httpClient.SendAsync(request, cts.Token);
+
+            // Check HTTP 200
+            if (!response.IsSuccessStatusCode)
+                return false;
+
+            // Check image
+            string? contentType = response.Content.Headers.ContentType?.MediaType?.ToLower();
+            cts.Dispose();
+
+            return contentType?.StartsWith("image/") ?? false;
+        }
+        catch (Exception ex) {
+            Log.Error(ex.ToString());
+
+            return false;
+        }
     }
 
     private bool ProcessJsonNode(JsonNode node, Dictionary<string, string>? updateMapping, Dictionary<string, Func<object, object>>? valueTypeMapping) {

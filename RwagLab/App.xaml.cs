@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
+using Microsoft.Windows.ApplicationModel.Resources;
 using RwagLab.Services;
 using RwagLab.Views.Pages;
 using Uno.Extensions.Toolkit;
@@ -23,12 +24,14 @@ public partial class App : Application {
         this.InitializeComponent();
     }
 
-    public IOptions<AppConfig>? Configuration { get; private set; }
+    private static IOptions<AppConfig> configuration = default!;
+
+    public static IOptions<AppConfig> Configuration => configuration ?? throw new InvalidOperationException("MyField not initialized yet");
 
 
     public static new App Current => (App)Application.Current;
 
-    protected Window? MainWindow { get; private set; }
+    public Window? MainWindow { get; private set; }
 
     public IThemeService? ThemeService { get; private set; }
     internal IHost? Host { get; private set; }
@@ -80,7 +83,10 @@ public partial class App : Application {
                 {
                     // TODO: Register your services
                     //services.AddSingleton<IMyService, MyService>();
-                    services.AddSingleton<ConfigService>();
+                    services.AddSingleton<HttpClient>();
+                    services.AddSingleton<ResourceLoader>();
+
+                    services.AddSingleton<PathService>();
                     services.AddSingleton<SettingsService>();
                     services.AddSingleton<ScriptItemService>();
                 })
@@ -95,7 +101,7 @@ public partial class App : Application {
         Host = builder.Build();
 
         // Configuration
-        Configuration = GetService<IOptions<AppConfig>>();
+        configuration = GetService<IOptions<AppConfig>>();
 
         // Window Settings
         MainWindow.AppWindow.Resize(new SizeInt32 { Height = Configuration.Value.WindowHeight, Width = Configuration.Value.WindowWidth});

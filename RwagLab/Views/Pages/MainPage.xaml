@@ -24,7 +24,8 @@
         </StackPanel>
 
         <!-- Content -->
-        <NavigationView x:Name="MainNavigationView" Grid.Row="1">
+        <NavigationView x:Name="MainNavigationView" Grid.Row="1" >
+            <!--Header="{x:Bind SelectedItem.Content}"-->
             <!-- Events -->
             <Interactivity:Interaction.Behaviors>
                 <!-- Navigate to Page -->
@@ -39,7 +40,7 @@
             </Interactivity:Interaction.Behaviors>
 
             <!-- Content -->
-            <Frame x:Name="MainFrame" />
+            <Frame x:Name="MainFrame" Background="{Binding BackgroundBrush}" />
         </NavigationView>
     </Grid>
 </Page>

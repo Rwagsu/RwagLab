@@ -6,5 +6,7 @@ namespace RwagLab.Models.Enums;
 
 public enum MessengerTokenEnum {
     MainPage_PageNavigateToken,
-    MainPage_PageGoBackToken
+    MainPage_PageGoBackToken,
+
+    SettingsPage_PageNavigateToken
 }

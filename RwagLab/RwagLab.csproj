@@ -4,6 +4,7 @@
 
     <OutputType>Exe</OutputType>
     <UnoSingleProject>true</UnoSingleProject>
+      <LangVersion>preview</LangVersion>
 
     <!-- Display name -->
     <ApplicationTitle>RwagLab</ApplicationTitle>
@@ -51,6 +52,8 @@
   <ItemGroup>
     <None Remove="Assets\Icons\AppIcons\icon_full.png" />
     <None Remove="Views\Pages\SettingsPage.xaml" />
+    <None Remove="Views\Pages\Settings\AboutSettingsPage.xaml" />
+    <None Remove="Views\Pages\Settings\ThemeSettingsPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Pages\Scripts\" />
@@ -60,14 +63,28 @@
     <PackageReference Include="CommunityToolkit.WinUI.Behaviors" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.Segmented" />
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" />
+    <PackageReference Include="CommunityToolkit.WinUI.Converters" />
   </ItemGroup>
   <ItemGroup>
     <UnoImage Include="Assets\Icons\AppIcons\icon_full.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Views\Pages\Settings\AboutSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Pages\Settings\ThemeSettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Views\Pages\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0-windows10.0.26100'">
+    <PackageReference Include="CommunityToolkit.Labs.WinUI.Controls.MarkdownTextBlock" />
   </ItemGroup>
 
 </Project>

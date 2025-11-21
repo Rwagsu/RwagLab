@@ -123,22 +123,64 @@
   <data name="MainPage_SettingsText.Text" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="SettingsPage_Owner.Text" xml:space="preserve">
+  <data name="AboutSettingsPage_Owner.Text" xml:space="preserve">
     <value>的作品.</value>
   </data>
-  <data name="SettingsPage_ThemeSettingsCard.Description" xml:space="preserve">
+  <data name="ThemeSettingsPage_ThemeSettingsCard.Description" xml:space="preserve">
     <value>仅支持设置深色 / 浅色模式.</value>
   </data>
-  <data name="SettingsPage_ThemeSettingsCard.Header" xml:space="preserve">
-    <value>主题</value>
+  <data name="ThemeSettingsPage_ThemeSettingsCard.Header" xml:space="preserve">
+    <value>颜色模式</value>
   </data>
-  <data name="SettingsPage_ThemeSettings_System.Content" xml:space="preserve">
+  <data name="ThemeSettingsPage_ThemeSettings_System.Content" xml:space="preserve">
     <value>跟随系统</value>
   </data>
-  <data name="SettingsPage_ThemeSettings_Light.Content" xml:space="preserve">
+  <data name="ThemeSettingsPage_ThemeSettings_Light.Content" xml:space="preserve">
     <value>浅色</value>
   </data>
-  <data name="SettingsPage_ThemeSettings_Dark.Content" xml:space="preserve">
+  <data name="ThemeSettingsPage_ThemeSettings_Dark.Content" xml:space="preserve">
     <value>深色</value>
+  </data>
+  <data name="SettingsPage_AboutSettingsNavigationViewItem.Content" xml:space="preserve">
+    <value>关于</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundSettingsExpander.Header" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundSettingsExpander.Description" xml:space="preserve">
+    <value>更改应用程序背景的显示方式.</value>
+  </data>
+  <data name="SettingsPage_ThemeSettingsNavigationViewItem.Content" xml:space="preserve">
+    <value>外观</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundComboBox_None.Content" xml:space="preserve">
+    <value>无背景</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundComboBox_Image.Content" xml:space="preserve">
+    <value>自定义图片</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundComboBox_BingWallpaper.Content" xml:space="preserve">
+    <value>Bing 每日壁纸</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathSettingsCard.Description" xml:space="preserve">
+    <value>应用无法复制你的图片, 请确保路径指向的图片一直存在.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathSettingsCard.Header" xml:space="preserve">
+    <value>背景图片路径</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathTextBox.PlaceholderText" xml:space="preserve">
+    <value>输入或点击按钮选取背景图片.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从本地选择一张背景图片.</value>
+  </data>
+  <data name="ThemeSettingsPageViewModel_FilePickerFinishButtonText" xml:space="preserve">
+    <value>应用到背景</value>
+  </data>
+  <data name="ThemeSettingsPageViewModel_FileNotFoundTipText" xml:space="preserve">
+    <value>指定的路径没有文件.</value>
+  </data>
+  <data name="ThemeSettingsPageViewModel_InvalidPathTipText" xml:space="preserve">
+    <value>该路径无效, 请参阅 [文档(&lt;TODO&gt;)](https://github.com) 了解我们对路径的限制.</value>
   </data>
 </root>
