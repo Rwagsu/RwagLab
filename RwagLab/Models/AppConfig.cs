@@ -1,5 +1,6 @@
 using Windows.Foundation;
 using Windows.Graphics;
+using System.Collections.Immutable;
 
 namespace RwagLab.Models;
 
@@ -17,4 +18,6 @@ public record AppConfig {
     public int WindowWidth { get; init; }
 
     public string BingWallpaperUrl { get; init; } = string.Empty;
+
+    public Dictionary<string, string> SupportedLanguages { get; init; } = new Dictionary<string, string>();
 }

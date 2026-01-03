@@ -147,4 +147,16 @@
   <data name="SettingsPage_ThemeSettingsNavigationViewItem.Content" xml:space="preserve">
     <value>Appearance</value>
   </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_None.Content" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_Fill.Content" xml:space="preserve">
+    <value>Fill</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_Uniform.Content" xml:space="preserve">
+    <value>Uniform</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_UniformToFill.Content" xml:space="preserve">
+    <value>Uniform to Fill</value>
+  </data>
 </root>

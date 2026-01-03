@@ -1,10 +1,12 @@
 using System.Diagnostics;
+using System.Globalization;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.Windows.ApplicationModel.Resources;
+using RwagLab.Models.Data.ServicesData;
 using RwagLab.Services;
 using RwagLab.Views.Pages;
 using Uno.Extensions.Toolkit;
@@ -103,8 +105,18 @@ public partial class App : Application {
         // Configuration
         configuration = GetService<IOptions<AppConfig>>();
 
+        // Set app language
+        var settingsService = GetService<SettingsService>();
+
+        if (settingsService.CurrentLanguage == string.Empty) {
+            CultureInfo currentUICulture = Thread.CurrentThread.CurrentUICulture;
+            settingsService.CurrentLanguage = currentUICulture.Name;
+        }
+
+        Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = settingsService.CurrentLanguage;
+
         // Window Settings
-        MainWindow.AppWindow.Resize(new SizeInt32 { Height = Configuration.Value.WindowHeight, Width = Configuration.Value.WindowWidth});
+        MainWindow.AppWindow.Resize(new SizeInt32 { Height = Configuration.Value.WindowHeight, Width = Configuration.Value.WindowWidth });
         MainWindow.AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
 
         ThemeService = MainWindow.GetThemeService();

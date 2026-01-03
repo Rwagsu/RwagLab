@@ -13,4 +13,6 @@ internal static class SettingsServiceData {
     internal static string backgroundImagePath = string.Empty;
 
     internal static Stretch backgroundImageStretch = Stretch.UniformToFill;
+
+    internal static string currentLanguage = string.Empty;
 }

@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Net.Sockets;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using CommunityToolkit.WinUI.Helpers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Media.Imaging;
 using RwagLab.Models.Data;
 using RwagLab.Models.Data.ServicesData;
 using RwagLab.Models.Enums;
-using Windows.Storage;
 
 namespace RwagLab.Services;
 
@@ -37,6 +34,10 @@ public class SettingsService {
     public AppTheme AppColorTheme { 
         get => SettingsServiceData.appColorTheme;
         set {
+            if (SettingsServiceData.appColorTheme == value) {
+                return;
+            }
+
             SettingsServiceData.appColorTheme = value;
 
             // Set theme
@@ -54,6 +55,10 @@ public class SettingsService {
     public BackgroundTypeEnum BackgroundType {
         get => SettingsServiceData.backgroundType;
         set {
+            if (SettingsServiceData.backgroundType == value) {
+                return;
+            }
+
             SettingsServiceData.backgroundType = value;
 
             // Invoke event and write to json
@@ -64,6 +69,10 @@ public class SettingsService {
     public string BackgroundImagePath {
         get => SettingsServiceData.backgroundImagePath;
         set {
+            if (SettingsServiceData.backgroundImagePath == value) {
+                return;
+            }
+
             SettingsServiceData.backgroundImagePath = value;
 
             // Invoke event and write to json
@@ -74,10 +83,34 @@ public class SettingsService {
     public Stretch BackgroundImageStretch {
         get => SettingsServiceData.backgroundImageStretch;
         set {
+            if (SettingsServiceData.backgroundImageStretch == value) {
+                return;
+            }
+
             SettingsServiceData.backgroundImageStretch = value;
 
             // Invoke event and write to json
             NotifyPropertyChanged(nameof(BackgroundImageStretch));
+        }
+    }
+
+    public string CurrentLanguage {
+        get => SettingsServiceData.currentLanguage;
+        set {
+            if (SettingsServiceData.currentLanguage == value) {
+                return;
+            }
+
+            // Set language
+            if (!App.Configuration.Value.SupportedLanguages.ContainsKey(value)) {
+                SettingsServiceData.currentLanguage = App.Configuration.Value.SupportedLanguages.FirstOrDefault().Key;
+            }
+            else {
+                SettingsServiceData.currentLanguage = value;
+            }
+
+            // Invoke event and write to json
+            NotifyPropertyChanged(nameof(CurrentLanguage));
         }
     }
 

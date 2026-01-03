@@ -27,4 +27,18 @@ public sealed partial class ThemeSettingsPage : Page {
 
         DataContext = new ThemeSettingsPageViewModel();
     }
+
+    private bool SetIsBackgroundPathEnabled(int index) {
+        if (index == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    private bool SetIsBackgroundStretchEnabled(int index) {
+        if (index != 0) {
+            return true;
+        }
+        return false;
+    }
 }

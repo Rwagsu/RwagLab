@@ -74,7 +74,7 @@
 
                 <!-- Items -->
                 <controls:SettingsExpander.Items>
-                    <controls:SettingsCard x:Uid="ThemeSettingsPage_BackgroundPathSettingsCard">
+                    <controls:SettingsCard x:Uid="ThemeSettingsPage_BackgroundPathSettingsCard" IsEnabled="{x:Bind SetIsBackgroundPathEnabled(BackgroundTypeComboBox.SelectedIndex), Mode=OneWay}">
                         <!-- Icon -->
                         <controls:SettingsCard.HeaderIcon>
                             <FontIcon Glyph="&#xE7C5;" />
@@ -89,7 +89,15 @@
                                          MinWidth="300"
                                          MaxWidth="460"
                                          BorderBrush="{Binding BackgroundPathErrorTip, Converter={StaticResource ErrorTipColorConverter}}"
-                                         Text="{Binding BackgroundPath, Mode=TwoWay}" />
+                                         Text="{Binding BackgroundPath, Mode=TwoWay}">
+                                    <!-- Events -->
+                                    <Interactivity:Interaction.Behaviors>
+                                        <!-- Set background path -->
+                                        <Interactivity:EventTriggerBehavior EventName="TextChanged">
+                                            <Interactivity:InvokeCommandAction Command="{Binding SetBackgroundPathCommand}" />
+                                        </Interactivity:EventTriggerBehavior>
+                                    </Interactivity:Interaction.Behaviors>
+                                </TextBox>
 
                                 <!-- FilePicker button -->
                                 <Button x:Uid="ThemeSettingsPage_BackgroundPathButton"
@@ -102,16 +110,48 @@
                             </StackPanel>
 
                             <!-- Error tip -->
-                            <controls:MarkdownTextBlock Foreground="{ThemeResource SystemFillColorCriticalBrush}"
-                                                        Text="{Binding BackgroundPathErrorTip}"
-                                                        UseAutoLinks="True"
-                                                        Visibility="{Binding BackgroundPathErrorTip, Converter={StaticResource ErrorTipVisibilityConverter}, ConverterParameter=False}" />
+                            <TextBlock Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                                       Text="{Binding BackgroundPathErrorTip}"
+                                       Visibility="{Binding BackgroundPathErrorTip, Converter={StaticResource ErrorTipVisibilityConverter}, ConverterParameter=False}" />
                         </StackPanel>
+                    </controls:SettingsCard>
+
+                    <!-- Background stretch -->
+                    <controls:SettingsCard x:Uid="ThemeSettingsPage_BackgroundStretchSettingsCard" IsEnabled="{x:Bind SetIsBackgroundStretchEnabled(BackgroundTypeComboBox.SelectedIndex), Mode=OneWay}">
+                        <!-- Icon -->
+                        <controls:SettingsCard.HeaderIcon>
+                            <FontIcon Glyph="&#xF246;" />
+                        </controls:SettingsCard.HeaderIcon>
+
+                        <!-- Content -->
+                        <ComboBox SelectedIndex="{Binding BackgroundStretchIndex, Mode=TwoWay}">
+                            <ComboBox.Items>
+                                <!-- UniformToFill -->
+                                <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundStretchComboBox_UniformToFill" />
+
+                                <!-- Uniform -->
+                                <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundStretchComboBox_Uniform" />
+
+                                <!-- None -->
+                                <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundStretchComboBox_None" />
+
+                                <!-- Fill -->
+                                <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundStretchComboBox_Fill" />
+                            </ComboBox.Items>
+
+                            <!-- Events -->
+                            <Interactivity:Interaction.Behaviors>
+                                <!-- Switch background stretch -->
+                                <Interactivity:EventTriggerBehavior EventName="SelectionChanged">
+                                    <Interactivity:InvokeCommandAction Command="{Binding SetBackgroundStretchCommand}" />
+                                </Interactivity:EventTriggerBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </ComboBox>
                     </controls:SettingsCard>
                 </controls:SettingsExpander.Items>
 
                 <!-- Content -->
-                <ComboBox SelectedIndex="{Binding BackgroundIndex, Mode=TwoWay}">
+                <ComboBox x:Name="BackgroundTypeComboBox" SelectedIndex="{Binding BackgroundIndex, Mode=TwoWay}">
                     <ComboBox.Items>
                         <!-- None -->
                         <ComboBoxItem x:Uid="ThemeSettingsPage_BackgroundComboBox_None" />
@@ -132,6 +172,36 @@
                     </Interactivity:Interaction.Behaviors>
                 </ComboBox>
             </controls:SettingsExpander>
+
+            <!-- Language -->
+            <controls:SettingsCard x:Uid="ThemeSettingsPage_LanguageSettingsCard">
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xF2B7;" />
+                </controls:SettingsCard.HeaderIcon>
+                <!-- Content -->
+                <ComboBox MinWidth="230"
+                          ItemsSource="{Binding Languages}"
+                          SelectedIndex="{Binding SelectedLanguageIndex, Mode=TwoWay}"
+                          SelectionChangedTrigger="Committed">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <TextBlock HorizontalAlignment="Left" Text="{Binding Value}" />
+                                <TextBlock HorizontalAlignment="Right"
+                                           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                           Text="{Binding Key}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </controls:SettingsCard>
+
+            <!-- Language tip -->
+            <controls:SettingsCard x:Uid="ThemeSettingsPage_LanguageTipSettingsCard">
+                <controls:SettingsCard.HeaderIcon>
+                    <FontIcon Glyph="&#xE909;" />
+                </controls:SettingsCard.HeaderIcon>
+            </controls:SettingsCard>
         </StackPanel>
     </ScrollViewer>
 </Page>

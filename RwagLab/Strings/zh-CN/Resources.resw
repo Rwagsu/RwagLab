@@ -166,7 +166,7 @@
     <value>应用无法复制你的图片, 请确保路径指向的图片一直存在.</value>
   </data>
   <data name="ThemeSettingsPage_BackgroundPathSettingsCard.Header" xml:space="preserve">
-    <value>背景图片路径</value>
+    <value>图片路径</value>
   </data>
   <data name="ThemeSettingsPage_BackgroundPathTextBox.PlaceholderText" xml:space="preserve">
     <value>输入或点击按钮选取背景图片.</value>
@@ -181,6 +181,36 @@
     <value>指定的路径没有文件.</value>
   </data>
   <data name="ThemeSettingsPageViewModel_InvalidPathTipText" xml:space="preserve">
-    <value>该路径无效, 请参阅 [文档(&lt;TODO&gt;)](https://github.com) 了解我们对路径的限制.</value>
+    <value>该路径无效, 请参阅 https://github.com 了解我们对路径的限制.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchSettingsCard.Header" xml:space="preserve">
+    <value>图片缩放模式</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchSettingsCard.Description" xml:space="preserve">
+    <value>更改你的图片将如何被应用缩放.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_None.Content" xml:space="preserve">
+    <value>原始大小</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_Fill.Content" xml:space="preserve">
+    <value>填充</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_Uniform.Content" xml:space="preserve">
+    <value>等比缩放</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchComboBox_UniformToFill.Content" xml:space="preserve">
+    <value>等比填充 (裁剪)</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageSettingsCard.Header" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageSettingsCard.Description" xml:space="preserve">
+    <value>需要重启才能应用语言设置.</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageTipSettingsCard.Header" xml:space="preserve">
+    <value>想要帮助支持更多语言吗? 😋</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageTipSettingsCard.Description" xml:space="preserve">
+    <value>目前仅中文和英文正在积极支持, 但是你可以在 Crowdin 中帮助我们!</value>
   </data>
 </root>

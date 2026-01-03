@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Windows.ApplicationModel.Resources;
+using RwagLab.Extensions;
 using RwagLab.Models.Enums;
 using RwagLab.Services;
 using Serilog;
@@ -17,15 +19,17 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
     private readonly IThemeService? themeService;
     private readonly ResourceLoader resourceLoader;
     private readonly PathService pathService;
-
     private readonly SettingsService settingsService;
 
     public ThemeSettingsPageViewModel() {
+        // Services
         themeService = App.Current.ThemeService;
         settingsService = App.GetService<SettingsService>();
         resourceLoader = App.GetService<ResourceLoader>();
         pathService = App.GetService<PathService>();
 
+        // Initialize properties
+        // Theme
         ThemeIndex = settingsService.AppColorTheme switch {
             AppTheme.System => 0,
             AppTheme.Light => 1,
@@ -33,6 +37,7 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
             _ => 0
         };
 
+        // Background
         BackgroundIndex = settingsService.BackgroundType switch {
             BackgroundTypeEnum.Image => 1,
             BackgroundTypeEnum.BingWallpaper => 2,
@@ -43,6 +48,14 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
 
         BackgroundPathErrorTip = string.Empty;
 
+        // Language
+        Languages = new (App.Configuration.Value.SupportedLanguages);
+
+        SelectedLanguageIndex = Languages.GetIndexOrDefault(item => {
+            return item.Key == settingsService.CurrentLanguage;
+        });
+
+        // Events
         settingsService.PropertyChanged += SettingsService_PropertyChanged;
     }
 
@@ -57,6 +70,15 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
 
     [ObservableProperty]
     public partial string BackgroundPathErrorTip { get; set; }
+
+    [ObservableProperty]
+    public partial int BackgroundStretchIndex { get; set; }
+
+    [ObservableProperty]
+    public partial ObservableCollection<KeyValuePair<string, string>> Languages { get; set; }
+
+    [ObservableProperty]
+    public partial int SelectedLanguageIndex { get; set; }
 
     [RelayCommand(FlowExceptionsToTaskScheduler = true)]
     private async Task SetTheme() {
@@ -125,7 +147,8 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
         }
     }
 
-    partial void OnBackgroundPathChanged(string value) {
+    [RelayCommand]
+    private void SetBackgroundPath() {
         // Error path
         if (!pathService.CheckPath(BackgroundPath)) {
             BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_InvalidPathTipText");
@@ -142,6 +165,20 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
             // Set background path
             settingsService.BackgroundImagePath = BackgroundPath;
         }
+    }
+
+    [RelayCommand]
+    private void SetBackgroundStretch() {
+        settingsService.BackgroundImageStretch = BackgroundStretchIndex switch {
+            1 => Stretch.Uniform,
+            2 => Stretch.None,
+            3 => Stretch.Fill,
+            _ => Stretch.UniformToFill,
+        };
+    }
+
+    partial void OnSelectedLanguageIndexChanged(int value) {
+        settingsService.CurrentLanguage = Languages[value].Key;
     }
 
     private void SettingsService_PropertyChanged(object? sender, PropertyChangedEventArgs e) {

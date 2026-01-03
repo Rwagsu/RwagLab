@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using RwagLab.Models.Enums;
 
@@ -12,5 +13,5 @@ public struct LabSpriptItem {
 
     public required Type NavigatePage { get; init; }
 
-    public required SupportedSystemEnum SupportedSystems { get; init; }
+    public required ReadOnlyDictionary<SupportedSystemEnum, string> NotSupportedSystems { get; init; }
 }
