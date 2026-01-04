@@ -1,0 +1,3 @@
+files:
+  - source: /Strings/en-US/Resources.resw
+    translation: /Strings/%locale_with_underscore%/Resources.resw
