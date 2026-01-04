@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -127,7 +127,7 @@
     <value>的作品.</value>
   </data>
   <data name="ThemeSettingsPage_ThemeSettingsCard.Description" xml:space="preserve">
-    <value />
+    <value>仅支持设置深色 / 浅色模式.</value>
   </data>
   <data name="ThemeSettingsPage_ThemeSettingsCard.Header" xml:space="preserve">
     <value>Color mode</value>
@@ -144,8 +144,50 @@
   <data name="SettingsPage_AboutSettingsNavigationViewItem.Content" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="ThemeSettingsPage_BackgroundSettingsExpander.Header" xml:space="preserve">
+    <value>背景</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundSettingsExpander.Description" xml:space="preserve">
+    <value>更改应用程序背景的显示方式.</value>
+  </data>
   <data name="SettingsPage_ThemeSettingsNavigationViewItem.Content" xml:space="preserve">
     <value>Appearance</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundComboBox_None.Content" xml:space="preserve">
+    <value>无背景</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundComboBox_Image.Content" xml:space="preserve">
+    <value>自定义图片</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundComboBox_BingWallpaper.Content" xml:space="preserve">
+    <value>Bing 每日壁纸</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathSettingsCard.Description" xml:space="preserve">
+    <value>应用无法复制你的图片, 请确保路径指向的图片一直存在.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathSettingsCard.Header" xml:space="preserve">
+    <value>图片路径</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathTextBox.PlaceholderText" xml:space="preserve">
+    <value>输入或点击按钮选取背景图片.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundPathButton.ToolTipService.ToolTip" xml:space="preserve">
+    <value>从本地选择一张背景图片.</value>
+  </data>
+  <data name="ThemeSettingsPageViewModel_FilePickerFinishButtonText" xml:space="preserve">
+    <value>应用到背景</value>
+  </data>
+  <data name="ThemeSettingsPageViewModel_FileNotFoundTipText" xml:space="preserve">
+    <value>指定的路径没有文件.</value>
+  </data>
+  <data name="ThemeSettingsPageViewModel_InvalidPathTipText" xml:space="preserve">
+    <value>该路径无效, 请参阅 https://github.com 了解我们对路径的限制.</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchSettingsCard.Header" xml:space="preserve">
+    <value>图片缩放模式</value>
+  </data>
+  <data name="ThemeSettingsPage_BackgroundStretchSettingsCard.Description" xml:space="preserve">
+    <value>更改你的图片将如何被应用缩放.</value>
   </data>
   <data name="ThemeSettingsPage_BackgroundStretchComboBox_None.Content" xml:space="preserve">
     <value>None</value>
@@ -158,5 +200,17 @@
   </data>
   <data name="ThemeSettingsPage_BackgroundStretchComboBox_UniformToFill.Content" xml:space="preserve">
     <value>Uniform to Fill</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageSettingsCard.Header" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageSettingsCard.Description" xml:space="preserve">
+    <value>需要重启才能应用语言设置.</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageTipSettingsCard.Header" xml:space="preserve">
+    <value>想要帮助支持更多语言吗? 😋</value>
+  </data>
+  <data name="ThemeSettingsPage_LanguageTipSettingsCard.Description" xml:space="preserve">
+    <value>目前仅中文和英文正在积极支持, 但是你可以在 Crowdin 中帮助我们!</value>
   </data>
 </root>
