@@ -1,3 +1,3 @@
 files:
-  - source: /RwagLab/Strings/zh-CN/Resources.resw
-    translation: /RwagLab/Strings/%locale_with_underscore%/Resources.resw
+  - source: /RwagLab/Strings/zh-CN/*.resw
+    translation: /RwagLab/Strings/%locale_with_underscore%/*.resw
