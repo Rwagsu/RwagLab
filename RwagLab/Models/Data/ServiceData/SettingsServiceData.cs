@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using RwagLab.Models.Enums;
 
-namespace RwagLab.Models.Data.ServicesData;
+namespace RwagLab.Models.Data.ServiceData;
 
 internal static class SettingsServiceData {
     internal static AppTheme appColorTheme = AppTheme.System;

@@ -10,4 +10,10 @@ public static class IEnumerableExtension {
         var item = source.FirstOrDefault(func);
         return source.IndexOf(item);
     }
+
+    public static void AddIfNotNull<T>(this ICollection<T> source, T? item) where T : class {
+        if (item != null) {
+            source.Add(item);
+        }
+    }
 }

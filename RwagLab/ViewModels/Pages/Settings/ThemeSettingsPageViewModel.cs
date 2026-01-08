@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.Windows.ApplicationModel.Resources;
 using RwagLab.Extensions;
 using RwagLab.Models.Enums;
 using RwagLab.Services;
@@ -121,7 +120,7 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
         picker.FileTypeFilter.Add(".png");
 
         // Button title
-        picker.CommitButtonText = resourceLoader.GetString("ThemeSettingsPageViewModel_FilePickerFinishButtonText");
+        picker.CommitButtonText = resourceLoader.GetString("ThemeSettingsPageViewModel_FilePickerFinishButtonText") ?? string.Empty;
 
         // Start path
         picker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
@@ -134,10 +133,10 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
 
         if (file != null) {
             if (!pathService.CheckPath(file.Path)) {
-                BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_InvalidPathTipText");
+                BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_InvalidPathTipText") ?? string.Empty;
             }
             else if(!File.Exists(file.Path)) {
-                BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_FileNotFoundTipText");
+                BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_FileNotFoundTipText") ?? string.Empty;
             }
             else {
                 // Clear error
@@ -151,10 +150,10 @@ public partial class ThemeSettingsPageViewModel : ObservableObject {
     private void SetBackgroundPath() {
         // Error path
         if (!pathService.CheckPath(BackgroundPath)) {
-            BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_InvalidPathTipText");
+            BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_InvalidPathTipText") ?? string.Empty;
         }
         else if(!File.Exists(BackgroundPath)) {
-            BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_FileNotFoundTipText");
+            BackgroundPathErrorTip = resourceLoader.GetString("ThemeSettingsPageViewModel_FileNotFoundTipText") ?? string.Empty;
         }
 
         // Valid path

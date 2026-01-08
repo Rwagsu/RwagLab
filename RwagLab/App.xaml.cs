@@ -5,8 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
-using Microsoft.Windows.ApplicationModel.Resources;
-using RwagLab.Models.Data.ServicesData;
+using RwagLab.Models.Enums;
 using RwagLab.Services;
 using RwagLab.Views.Pages;
 using Uno.Extensions.Toolkit;
@@ -167,5 +166,19 @@ public partial class App : Application {
         }
 
         throw new InvalidOperationException("Service not found.");
+    }
+
+    public static SupportedSystemEnum GetCurrentSystem() {
+        if (OperatingSystem.IsWindows()) {
+            return SupportedSystemEnum.Windows;
+        }
+        else if (OperatingSystem.IsLinux()) {
+            return SupportedSystemEnum.Linux;
+        }
+        else if (OperatingSystem.IsMacOS()) {
+            return SupportedSystemEnum.MacOS;
+        }
+
+        return SupportedSystemEnum.NotSupported;
     }
 }

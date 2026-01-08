@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Uno.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net10.0-windows10.0.26100;net10.0-desktop;net10.0</TargetFrameworks>
+    <TargetFrameworks>net10.0-desktop;net10.0-windows10.0.26100;net10.0</TargetFrameworks>
 
     <OutputType>Exe</OutputType>
     <UnoSingleProject>true</UnoSingleProject>
@@ -52,13 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Assets\Icons\AppIcons\icon_full.png" />
+    <None Remove="Views\Pages\Scripts\AppInstaller\AppInstallerPage.xaml" />
     <None Remove="Views\Pages\SettingsPage.xaml" />
     <None Remove="Views\Pages\Settings\AboutSettingsPage.xaml" />
     <None Remove="Views\Pages\Settings\ThemeSettingsPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Pages\Scripts\" />
-    <Folder Include="Views\Pages\Scripts\" />
+    <Folder Include="Xaml\Converters\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.WinUI.Behaviors" />
@@ -69,6 +70,11 @@
   </ItemGroup>
   <ItemGroup>
     <UnoImage Include="Assets\Icons\AppIcons\icon_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\Pages\Scripts\AppInstaller\AppInstallerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\Pages\Settings\AboutSettingsPage.xaml">

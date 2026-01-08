@@ -24,8 +24,8 @@
         </StackPanel>
 
         <!-- Content -->
-        <NavigationView x:Name="MainNavigationView" Grid.Row="1" >
-            <!--Header="{x:Bind SelectedItem.Content}"-->
+        <NavigationView x:Name="MainNavigationView" Grid.Row="1">
+            <!-- TODO: 这啥东西 Header="{x:Bind SelectedItem.Content}" -->
             <!-- Events -->
             <Interactivity:Interaction.Behaviors>
                 <!-- Navigate to Page -->

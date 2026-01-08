@@ -213,4 +213,16 @@
   <data name="ThemeSettingsPage_LanguageTipSettingsCard.Description" xml:space="preserve">
     <value>目前仅中文和英文正在积极支持, 但是你可以在 Crowdin 中帮助我们!</value>
   </data>
+  <data name="ThemeSettingsPage_OpenCrowdinTip.Text" xml:space="preserve">
+    <value>在 Crowdin 帮助我们翻译</value>
+  </data>
+  <data name="ThemeSettingsPage_NavigateToCrowdinAction.NavigateUri" xml:space="preserve">
+    <value>https://zh.crowdin.com/project/rwaglab</value>
+  </data>
+  <data name="NavItemConverter_SupportSystemGroupName" xml:space="preserve">
+    <value>在你的设备可用</value>
+  </data>
+  <data name="NavItemConverter_NotSupportSystemGroupName" xml:space="preserve">
+    <value>不支持你的设备</value>
+  </data>
 </root>

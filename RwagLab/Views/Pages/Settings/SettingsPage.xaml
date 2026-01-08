@@ -8,7 +8,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}"
       mc:Ignorable="d">
-    <NavigationView x:Name="SettingsNavigationView" 
+    <NavigationView x:Name="SettingsNavigationView"
                     IsBackButtonVisible="Collapsed"
                     IsBackEnabled="False"
                     IsSettingsVisible="False"
@@ -16,8 +16,7 @@
         <!-- Items -->
         <NavigationView.MenuItems>
             <!-- AboutSettings -->
-            <NavigationViewItem x:Uid="SettingsPage_AboutSettingsNavigationViewItem"
-                                Tag="AboutSettings">
+            <NavigationViewItem x:Uid="SettingsPage_AboutSettingsNavigationViewItem" Tag="AboutSettings">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE74C;" />
                 </NavigationViewItem.Icon>

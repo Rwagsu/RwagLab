@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.UI;
 using Microsoft.UI.Xaml.Media.Imaging;
 using RwagLab.Models.Data;
-using RwagLab.Models.Data.ServicesData;
+using RwagLab.Models.Data.ServiceData;
 using RwagLab.Models.Enums;
 
 namespace RwagLab.Services;
@@ -152,7 +152,7 @@ public class SettingsService {
         return new SolidColorBrush(Colors.White);
     }
 
-    public async Task<string> GetBingWallpaperUrl() {
+    public static async Task<string> GetBingWallpaperUrl() {
         try {
             // Get text
             var jsonText = await App.GetService<HttpClient>().GetStringAsync(App.Configuration.Value.BingWallpaperUrl);
@@ -203,7 +203,7 @@ public class SettingsService {
 
         pathService.TryReadConfig(Path.Combine(AppDataPath.pathsList["ConfigsPath"], @"SettingsConfigs.json"),
             SettingsServiceContext.Default.SettingsService,
-            out var returnValue
+            out _
         );
 
         isCanWriteToJson = true;

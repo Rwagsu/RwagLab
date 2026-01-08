@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Messaging.Messages;
+using RwagLab.Models.Classes;
 using RwagLab.Models.Enums;
 using RwagLab.Services;
 using RwagLab.Views.Pages;
@@ -20,10 +22,16 @@ public partial class MainPageViewModel : ObservableObject {
         config = App.Configuration.Value;
         settingsService = App.GetService<SettingsService>();
 
+        // Set title
         Title = config.ApplicationName ?? "AppName";
 
+        // Set background
         SetBackground();
 
+        // Set NavBar items
+        NavBarItems = App.GetService<ScriptItemService>().LabScriptItems;
+
+        // Subscribe to settings changes
         settingsService.PropertyChanged += SettingsService_PropertyChanged;
     }
 
@@ -32,6 +40,9 @@ public partial class MainPageViewModel : ObservableObject {
 
     [ObservableProperty]
     public partial Brush? BackgroundBrush { get; set; }
+
+    [ObservableProperty]
+    public partial ReadOnlyDictionary<ScriptGroup, List<LabScriptItem>> NavBarItems { get; set; }
 
     [RelayCommand]
     private void NavigateToPage(NavigationViewSelectionChangedEventArgs e) {
@@ -44,6 +55,8 @@ public partial class MainPageViewModel : ObservableObject {
     private void NavigateGoBack() {
         WeakReferenceMessenger.Default.Send(new RequestMessage<bool>(), MessengerTokenEnum.MainPage_PageGoBackToken.ToString());
     }
+
+    
 
     private async void SetBackground() {
         BackgroundBrush = await settingsService.GetAppBackground();
