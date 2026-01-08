@@ -10,9 +10,9 @@ public class ScriptItemService {
 
     public ScriptItemService() {
         // Initialize ResourceLoader
-        resourceLoader = ResourceLoader.GetForCurrentView("SpriptNames");
+        resourceLoader = ResourceLoader.GetForViewIndependentUse("ScriptNames");
 
-        // Initialize LabSpriptItems
+        // Initialize LabScriptItems
         var content = new Dictionary<ScriptGroup, List<LabScriptItem>> {
             // SystemTools Group
             {
